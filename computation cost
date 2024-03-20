@@ -1,0 +1,51 @@
+def compute_cost(operation):
+  """
+  This function estimates the cost of a cryptographic operation.
+
+  Args:
+      operation: String representing the operation (e.g., "E(PuK)")
+
+  Returns:
+      Integer representing the estimated cost.
+  """
+  if operation.startswith("E("):
+    # Encryption cost
+    return 2
+  elif operation.startswith("DEP"):
+    # Decryption cost
+    return 3
+  else:
+    # Other operations (comparisons, assignments)
+    return 1
+
+def novel_authentication_cost():
+  """
+  This function calculates the total computation cost of the algorithm.
+  """
+  cost = 0
+  # Step 1
+  cost += compute_cost("E(PuK_y)")
+  # Step 2
+  cost += compute_cost("DEPrK_y")
+  # Step 3
+  cost += compute_cost("E(PuK_x)")
+  # Step 4
+  cost += compute_cost("DEPrK_x")
+  # Step 5
+  cost += compute_cost("E(PuK_y)")
+  # Step 6
+  cost += compute_cost("DEPrK_x") * (n-1)  # Decryption repeated n-1 times
+  # Step 7
+  cost += compute_cost("E(PuK_y)")
+  # Step 8
+  cost += compute_cost("DEPrK_y")
+  # Step 9
+  cost += compute_cost("comparison") * 3  # Assuming 3 comparisons
+
+  return cost
+
+# Calculate total cost with a hypothetical value for n
+n = 4
+total_cost = novel_authentication_cost()
+
+print(f"Total computation cost for n={n}: {total_cost}")
