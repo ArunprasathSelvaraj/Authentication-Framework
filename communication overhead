@@ -1,0 +1,63 @@
+import matplotlib.pyplot as plt
+
+def calculate_overhead(message_length):
+  """
+  Simulates communication overhead based on message length.
+
+  Args:
+      message_length: Length of the message to be encrypted (bytes).
+
+  Returns:
+      Overhead in bytes (estimated).
+  """
+  # Overhead for public key encryption/decryption (replace with actual values)
+  publicKey_overhead = 100
+
+  # Overhead per byte in the message
+  message_overhead = 1
+
+  # Overhead for random number (assuming fixed size)
+  random_number_overhead = 16
+
+  return 2 * publicKey_overhead + message_length * message_overhead + 2 * random_number_overhead
+
+def simulate_authentication(message_lengths):
+  """
+  Simulates the authentication steps and calculates overhead for each message length.
+
+  Args:
+      message_lengths: List of message lengths (bytes) to simulate.
+
+  Returns:
+      A list of communication overhead values for each message length.
+  """
+  overhead_values = []
+  for message_length in message_lengths:
+    # Step 1 & 3: Overhead for encrypting messages with public keys
+    overhead_values.append(calculate_overhead(message_length))
+
+    # Skip redundant overhead calculation (assuming decryption cost is similar)
+
+  return overhead_values
+
+# Example message lengths (adjust as needed)
+message_lengths = range(10, 100, 10)  # Simulate overhead for messages from 10 to 90 bytes
+
+# Simulate authentication and get overhead values
+overhead_values = simulate_authentication(message_lengths)
+
+# Ensure message_lengths and overhead_values have the same length
+# (Option 1: modify simulate_authentication)
+# Alternatively, use slicing (Option 2): overhead_values = overhead_values[:len(message_lengths)]
+
+# Generate the graph with data point labels
+for i, message_length in enumerate(message_lengths):
+  overhead = overhead_values[i]
+  plt.text(message_length, overhead + 5, f"{overhead} bytes", ha='center')  # Adjust label position
+
+plt.plot(message_lengths, overhead_values)
+plt.xlabel("Message Length (bytes)")
+plt.ylabel("Communication Overhead (bytes)")
+plt.title("Communication Overhead in the Proposed Authentication Framework")
+plt.grid(True)  # Add gridlines for better readability
+plt.show()
