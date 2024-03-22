@@ -1,0 +1,26 @@
+import matplotlib.pyplot as plt
+
+data = {
+    "Multi tire Auth": [130, 240, 740, 1216],
+    "ID based Auth": [140, 250, 720, 1230],
+    "Lightweight Sol": [122, 210, 780, 1140],
+    "Proposed": [105, 150, 660, 950]
+}
+
+computational_overhead = [15, 30, 60, 120]
+
+plt.figure(figsize=(10, 6))
+
+bar_width = 0.2
+index = range(len(computational_overhead))
+
+for i, (label, values) in enumerate(data.items()):
+    plt.bar([x + i * bar_width for x in index], values, bar_width, label=label)
+
+plt.xlabel('Computational Overhead')
+plt.ylabel('Time (milliseconds)')
+plt.title('Computational Overhead Cost Comparison')
+plt.xticks([i + bar_width for i in index], computational_overhead)
+plt.legend()
+plt.grid(True)
+plt.show()
