@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+
+data = {
+    "Proposed": [(12.154, 0.273), (30.154, 2.091), (55.077, 3.182), (110.923, 6.091)],
+    "Lightweight sol": [(11.846, 0.273), (30.462, 3.182), (55.385, 4), (110.308, 7.909)],
+    "ID based Auth": [(11.846, 1.182), (30.769, 7.182), (56, 6), (110.923, 11.909)],
+    "Multu Tire Auth": [(11.538, 0.909), (40.308, 3.545), (61.231, 5.818), (72.308, 7), (91.692, 9.091), (110, 11)]
+}
+
+plt.figure(figsize=(10, 6))
+
+for label, values in data.items():
+    x, y = zip(*values)
+    plt.plot(x, y, marker='o', label=label)
+
+plt.title('Security Strength in Random Order')
+plt.xlabel('Time (seconds)')
+plt.ylabel('Security Strength')
+plt.legend()
+plt.grid(True)
+plt.show()
