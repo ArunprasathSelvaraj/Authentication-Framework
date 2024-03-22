@@ -1,0 +1,26 @@
+import matplotlib.pyplot as plt
+
+data = {
+    "Multi tire Auth": [280, 460, 1500, 2300],
+    "ID based Auth": [296, 520, 1480, 2460],
+    "Lightweight Sol": [205, 390, 1520, 2300],
+    "Proposed": [220, 320, 1310, 2260]
+}
+
+communication_overhead = [1000, 5000, 25000, 50000]
+
+plt.figure(figsize=(10, 6))
+
+bar_width = 0.2
+index = range(len(communication_overhead))
+
+for i, (label, values) in enumerate(data.items()):
+    plt.bar([x + i * bar_width for x in index], values, bar_width, label=label)
+
+plt.xlabel('Communication Overhead')
+plt.ylabel('Time (milliseconds)')
+plt.title('Communication Overhead Comparison')
+plt.xticks([i + bar_width for i in index], communication_overhead)
+plt.legend()
+plt.grid(True)
+plt.show()
