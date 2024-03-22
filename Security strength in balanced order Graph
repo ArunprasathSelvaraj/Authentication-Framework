@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+
+data = {
+    "Proposed": [(14.897, 0.064), (30.872, 0.962), (60.308, 3.013), (120.077, 4.038)],
+    "Lightweight sol": [(14.897, 2.051), (29.795, 4.167), (58.872, 6.154), (120.436, 9.038)],
+    "ID based Auth": [(15.256, 2.949), (30.154, 4.038), (59.59, 5), (120.077, 6.987)],
+    "Multu Tire Auth": [(14.538, 2.115), (30.513, 3.077), (59.59, 3.974), (120.077, 5.064)]
+}
+
+plt.figure(figsize=(10, 6))
+
+for label, values in data.items():
+    x, y = zip(*values)
+    plt.plot(x, y, marker='o', label=label)
+
+plt.title('Impact of Device Count on Authentication Security (Balanced Order)')
+plt.xlabel('Device Load')
+plt.ylabel('Performance')
+plt.legend()
+plt.grid(True)
+plt.show()
